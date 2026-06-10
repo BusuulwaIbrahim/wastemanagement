@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- ============================================================
+       RIGHT PROJECTS LTD — Medical & Hazardous Waste Management
+       Single-file corporate website | Pure HTML, CSS, Vanilla JS
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Right Projects Ltd — Uganda's trusted medical and hazardous waste management company. Safe collection, transport, treatment, and disposal of clinical and industrial waste." />
+  <meta name="keywords" content="medical waste management, hazardous waste, clinical waste disposal, Uganda, Right Projects Ltd" />
+  <meta name="author" content="Right Projects Ltd" />
+  <meta property="og:title" content="Right Projects Ltd | Your Medical Waste Management Company" />
+  <meta property="og:description" content="Safe, compliant, and sustainable medical and hazardous waste management across Uganda." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1c1c1e" />
+  <title>Right Projects Ltd | Your Medical Waste Management Company</title>
+
+  <!-- Google Fonts: Cormorant Garamond (display) + Jost (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Graphite & Copper Palette
+       ============================================================ */
+    :root {
+      /* Core palette — dark mode */
+      --bg:          #1c1c1e;
+      --bg-card:     #2c2c2e;
+      --bg-card2:    #242426;
+      --accent:      #b87333;        /* muted copper */
+      --accent-light:#d4924a;        /* lighter copper */
+      --accent-glow: rgba(184,115,51,.18);
+      --text:        #f5f0e8;        /* warm cream */
+      --text-muted:  #a89880;
+      --text-faint:  #6b6055;
+      --border:      rgba(184,115,51,.22);
+      --border-soft: rgba(245,240,232,.08);
+      --shadow:      0 8px 40px rgba(0,0,0,.55);
+      --shadow-sm:   0 2px 12px rgba(0,0,0,.35);
+      --nav-h:       72px;
+      --radius:      10px;
+      --radius-lg:   20px;
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+      /* Fonts */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', sans-serif;
+    }
+
+    /* Light mode overrides */
+    [data-theme="light"] {
+      --bg:          #f0ebe2;
+      --bg-card:     #faf7f2;
+      --bg-card2:    #ede8df;
+      --accent:      #9a5e1f;
+      --accent-light:#b87333;
+      --accent-glow: rgba(154,94,31,.12);
+      --text:        #1c1c1e;
+      --text-muted:  #5a4a38;
+      --text-faint:  #9a8a78;
+      --border:      rgba(154,94,31,.22);
+      --border-soft: rgba(28,28,30,.1);
+      --shadow:      0 8px 40px rgba(0,0,0,.14);
+      --shadow-sm:   0 2px 12px rgba(0,0,0,.1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-light); }
+    ul { list-style: none; }
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--text);
+    }
+
+    /* ============================================================
+       SCROLLBAR
+       ============================================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ============================================================
+       UTILITY CLASSES
+       ============================================================ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 1.2rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184,115,51,.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .divider {
+      width: 56px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 1.2rem 0 2rem;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATION — elements fade/slide in
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+    .delay-5 { transition-delay: .5s; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(28,28,30,.88);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 var(--border-soft), var(--shadow-sm);
+    }
+    [data-theme="light"] #navbar.scrolled {
+      background: rgba(240,235,226,.88);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 42px; height: 42px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .02em;
+    }
+    .logo-tag {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: .88rem;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    /* Nav controls */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem;
+      transition: all var(--transition);
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: none; /* shown on mobile */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all var(--transition);
+    }
+    .hamburger span {
+      display: block;
+      width: 18px; height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      padding: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       HERO SECTION (Home)
+       ============================================================ */
+    #home {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+
+    /* Subtle organic texture overlay */
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 50%, rgba(184,115,51,.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 15% 80%, rgba(184,115,51,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Animated lines — topographic feel */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: .12;
+    }
+    .hero-lines svg { width: 100%; height: 100%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem 1rem;
+      border-radius: 50px;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-soft);
+    }
+    .stat-item { display: flex; flex-direction: column; gap: .2rem; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* Hero image / visual panel */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: var(--shadow);
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.85) saturate(.9);
+    }
+    /* Copper frame accent */
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border);
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Floating badge on image */
+    .hero-float-badge {
+      position: absolute;
+      bottom: 2rem;
+      left: -1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 3;
+    }
+    .float-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-glow);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .float-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .float-text span {
+      font-size: .72rem;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+    }
+
+    /* Scroll indicator */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--text-faint);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-cue i { font-size: .85rem; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    #about {
+      padding: 120px 0;
+      position: relative;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    /* Timeline on left */
+    .about-timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: flex;
+      gap: 1.5rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .tl-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 44px;
+      bottom: 0;
+      width: 1.5px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+    }
+    .tl-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: .85rem;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+    .tl-item:hover .tl-dot {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .tl-body { padding-top: .4rem; }
+    .tl-year {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: .4rem;
+    }
+    .tl-text { font-size: .9rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* About right panel */
+    .about-content {}
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      transition: all var(--transition);
+    }
+    .value-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+    .value-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: .95rem;
+      margin-bottom: .9rem;
+    }
+    .value-card h4 {
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+    .value-card p { font-size: .82rem; color: var(--text-muted); }
+
+    /* Certifications strip */
+    .cert-strip {
+      margin-top: 2.5rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .cert-strip i { font-size: 1.6rem; color: var(--accent); }
+    .cert-strip p { font-size: .85rem; color: var(--text-muted); }
+    .cert-strip strong { color: var(--text); }
+
+    /* ============================================================
+       SERVICES SECTION
+       ============================================================ */
+    #services {
+      padding: 120px 0;
+      background: var(--bg-card2);
+      position: relative;
+    }
+    #services::before,
+    #services::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    #services::before { top: 0; }
+    #services::after  { bottom: 0; }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .services-header .section-sub { margin: 0 auto; }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    /* Organic blob accent on hover */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--border);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .service-card:hover::before {
+      transform: scale(1.4);
+    }
+
+    /* Feature card — spans 2 cols */
+    .service-card.feature {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .service-card.feature .svc-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+    }
+    .service-card.feature .svc-img img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: brightness(.8) saturate(.85);
+    }
+
+    .svc-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-glow);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: .75rem;
+      position: relative; z-index: 1;
+    }
+    .service-card p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .svc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-top: 1.2rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+      transition: gap var(--transition);
+    }
+    .svc-link:hover { gap: .7rem; }
+
+    /* Process strip */
+    .process-strip {
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .process-step {
+      background: var(--bg-card);
+      padding: 2rem 1.8rem;
+      position: relative;
+      transition: background var(--transition);
+    }
+    .process-step:hover { background: var(--bg-card2); }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent-glow);
+      line-height: 1;
+      margin-bottom: .8rem;
+      color: var(--border);
+    }
+    .process-step h4 { font-size: 1rem; margin-bottom: .5rem; }
+    .process-step p  { font-size: .82rem; color: var(--text-muted); }
+
+    /* ============================================================
+       FAQ SECTION
+       ============================================================ */
+    #faq {
+      padding: 120px 0;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .faq-item.open { border-color: var(--border); }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.3rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text);
+      text-align: left;
+    }
+    .faq-q i {
+      color: var(--accent);
+      font-size: .8rem;
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .faq-item.open .faq-q i { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s cubic-bezier(.4,0,.2,1), padding .3s;
+      padding: 0 1.6rem;
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .faq-item.open .faq-a {
+      max-height: 400px;
+      padding-bottom: 1.4rem;
+    }
+
+    /* ============================================================
+       CONTACT SECTION
+       ============================================================ */
+    #contact {
+      padding: 120px 0;
+      background: var(--bg-card2);
+      position: relative;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.6rem; }
+    .contact-card {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .contact-card:hover {
+      border-color: var(--border);
+      transform: translateX(4px);
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-glow);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-card h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-muted); margin-bottom: .2rem; }
+    .contact-card p, .contact-card a { font-size: .92rem; color: var(--text); }
+    .contact-card a:hover { color: var(--accent); }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+    .form-title {
+      font-size: 1.6rem;
+      margin-bottom: .5rem;
+    }
+    .form-sub { font-size: .88rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      font-family: var(--font-body);
+      font-size: .92rem;
+      color: var(--text);
+      width: 100%;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select option { background: var(--bg-card); }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .form-success i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+    .form-success p { color: var(--text-muted); }
+
+    /* ============================================================
+       LOCATION / MAP SECTION
+       ============================================================ */
+    #location {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .map-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 440px;
+      border: none;
+      filter: grayscale(.25) contrast(1.05);
+    }
+    [data-theme="light"] .map-wrap iframe { filter: none; }
+
+    .location-details { display: flex; flex-direction: column; gap: 1.4rem; }
+    .loc-card {
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      display: flex;
+      gap: 1.2rem;
+    }
+    .loc-icon {
+      width: 40px; height: 40px;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: .95rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .loc-card h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .3rem; }
+    .loc-card p  { font-size: .9rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* Coverage map visual */
+    .coverage-strip {
+      margin-top: 1rem;
+      padding: 1.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+    }
+    .coverage-strip h4 { font-size: 1rem; margin-bottom: 1rem; }
+    .coverage-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .cov-tag {
+      padding: .3rem .85rem;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      font-size: .75rem;
+      color: var(--text-muted);
+      transition: all var(--transition);
+    }
+    .cov-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    #footer {
+      background: var(--bg-card2);
+      border-top: 1px solid var(--border-soft);
+      padding: 80px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+      padding-bottom: 4rem;
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.2rem;
+    }
+    .footer-desc { font-size: .88rem; color: var(--text-muted); line-height: 1.85; max-width: 280px; }
+
+    .footer-social {
+      display: flex;
+      gap: .6rem;
+      margin-top: 1.8rem;
+    }
+    .social-btn {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: none;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: .85rem;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .footer-col h5 {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: .7rem; }
+    .footer-col ul li a {
+      font-size: .88rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin-bottom: .85rem;
+    }
+    .footer-contact-item i { color: var(--accent); margin-top: .2rem; font-size: .85rem; flex-shrink: 0; }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-soft);
+      padding: 1.6rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p { font-size: .8rem; color: var(--text-faint); }
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-legal a { font-size: .8rem; color: var(--text-faint); text-decoration: none; }
+    .footer-legal a:hover { color: var(--text-muted); }
+
+    /* ============================================================
+       BACK TO TOP BUTTON
+       ============================================================ */
+    #back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+      box-shadow: 0 4px 20px rgba(184,115,51,.45);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      transition: all var(--transition);
+      z-index: 800;
+    }
+    #back-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+    #back-top:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       COPPER DIVIDER ORNAMENT
+       ============================================================ */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border));
+    }
+    .ornament::after {
+      background: linear-gradient(270deg, transparent, var(--border));
+    }
+    .ornament i { color: var(--accent); font-size: .75rem; }
+
+    /* ============================================================
+       HERO TOPOGRAPHIC SVG DECORATION
+       ============================================================ */
+    .topo-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card.feature { grid-column: span 2; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-content { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+      .hero-visual { display: none; }
+      .hero-stats { gap: 1.5rem; }
+
+      .about-grid      { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid   { grid-template-columns: 1fr; }
+      .service-card.feature { grid-column: span 1; grid-template-columns: 1fr; }
+      .service-card.feature .svc-img { display: none; }
+      .faq-grid        { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid    { grid-template-columns: 1fr; gap: 2.5rem; }
+      .location-grid   { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-grid     { grid-template-columns: 1fr; }
+      .form-row        { grid-template-columns: 1fr; }
+      .values-grid     { grid-template-columns: 1fr; }
+      .process-strip   { grid-template-columns: 1fr; }
+      .footer-bottom   { flex-direction: column; align-items: flex-start; }
+      #about, #services, #faq, #contact, #location { padding: 80px 0; }
+      .hero-float-badge { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .contact-form-wrap { padding: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="#home" class="nav-logo" aria-label="Right Projects Ltd home">
+        <div class="logo-mark">R</div>
+        <div class="logo-text">
+          <span class="logo-name">Right Projects</span>
+          <span class="logo-tag">Your Medical Waste Co.</span>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#home"     class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+
+      <!-- Controls -->
+      <div class="nav-controls">
+        <!-- Theme toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <!-- CTA -->
+        <a href="#contact" class="btn btn-primary" style="display:none" id="navCta">
+          Get Quote
+        </a>
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <a href="#home"     onclick="closeMobileMenu()">Home</a>
+    <a href="#about"    onclick="closeMobileMenu()">About</a>
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#faq"      onclick="closeMobileMenu()">FAQ</a>
+    <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
+    <a href="#location" onclick="closeMobileMenu()">Location</a>
+  </div>
+
+  <!-- ============================================================
+       PAGE 1: HOME / HERO
+       ============================================================ -->
+  <section id="home" aria-label="Hero section">
+
+    <!-- Topographic lines background -->
+    <div class="topo-bg" aria-hidden="true">
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:.07;">
+        <path d="M-100,400 Q200,200 500,350 T1000,300 T1540,400" fill="none" stroke="#b87333" stroke-width="1.5"/>
+        <path d="M-100,450 Q250,250 550,380 T1050,330 T1540,450" fill="none" stroke="#b87333" stroke-width="1"/>
+        <path d="M-100,500 Q300,300 600,420 T1100,360 T1540,500" fill="none" stroke="#b87333" stroke-width="1"/>
+        <path d="M-100,350 Q180,180 480,320 T980,280 T1540,350" fill="none" stroke="#b87333" stroke-width="1"/>
+        <path d="M-100,550 Q350,350 650,460 T1150,390 T1540,550" fill="none" stroke="#b87333" stroke-width=".8"/>
+        <path d="M200,0 Q350,200 300,400 T350,800" fill="none" stroke="#b87333" stroke-width=".8"/>
+        <path d="M800,0 Q900,250 850,500 T900,800" fill="none" stroke="#b87333" stroke-width=".8"/>
+        <circle cx="300" cy="350" r="180" fill="none" stroke="#b87333" stroke-width=".6"/>
+        <circle cx="300" cy="350" r="240" fill="none" stroke="#b87333" stroke-width=".4"/>
+        <circle cx="300" cy="350" r="310" fill="none" stroke="#b87333" stroke-width=".3"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <!-- Left text column -->
+      <div class="hero-text">
+        <div class="hero-badge reveal delay-1">
+          <i class="fa-solid fa-shield-halved"></i>
+          ISO-Compliant Waste Management
+        </div>
+        <h1 class="hero-title reveal delay-2">
+          Protecting People &amp; <em>Planet</em> Through Safe Waste Management
+        </h1>
+        <p class="hero-desc reveal delay-3">
+          Right Projects Ltd is Uganda's trusted partner for the safe collection, treatment, and disposal of medical and hazardous waste — keeping communities, healthcare workers, and the environment safe.
+        </p>
+        <div class="hero-actions reveal delay-4">
+          <a href="#services" class="btn btn-primary">
+            <i class="fa-solid fa-arrow-right"></i>
+            Our Services
+          </a>
+          <a href="#about" class="btn btn-outline">
+            <i class="fa-solid fa-info-circle"></i>
+            Learn More
+          </a>
+        </div>
+
+        <div class="hero-stats reveal delay-5">
+          <div class="stat-item">
+            <span class="stat-num">12+</span>
+            <span class="stat-label">Years of Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Clients Served</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">99.8%</span>
+            <span class="stat-label">Compliance Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right visual column -->
+      <div class="hero-visual reveal-right">
+        <div class="hero-img-wrap">
+          <img
+            src="truck.jpeg"
+            alt="Medical waste management team at work"
+            loading="eager"
+          />
+        </div>
+        <!-- Floating badge -->
+        <div class="hero-float-badge">
+          <div class="float-icon">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div class="float-text">
+            <strong>Eco-Responsible</strong>
+            <span>Zero landfill policy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-cue" aria-hidden="true">
+      Scroll
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 2: ABOUT
+       ============================================================ -->
+  <section id="about" aria-label="About Right Projects Ltd">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: Company Timeline -->
+        <div class="reveal-left">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">Built on a Decade of Responsible Practice</h2>
+          <div class="divider"></div>
+
+          <div class="about-timeline">
+            <div class="tl-item">
+              <div class="tl-dot"><i class="fa-solid fa-seedling"></i></div>
+              <div class="tl-body">
+                <div class="tl-year">2012 — Founded</div>
+                <h3 class="tl-title">Company Established</h3>
+                <p class="tl-text">Right Projects Ltd was registered in Kampala with a mission to bridge the critical gap in safe medical waste management in Uganda's growing healthcare sector.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"><i class="fa-solid fa-certificate"></i></div>
+              <div class="tl-body">
+                <div class="tl-year">2015 — Certification</div>
+                <h3 class="tl-title">ISO &amp; NEMA Licensing</h3>
+                <p class="tl-text">We achieved full National Environment Management Authority (NEMA) licensing and adopted international best-practice frameworks for clinical waste handling.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"><i class="fa-solid fa-expand"></i></div>
+              <div class="tl-body">
+                <div class="tl-year">2018 — Expansion</div>
+                <h3 class="tl-title">National Operations</h3>
+                <p class="tl-text">Scaled beyond Kampala to serve clinics, hospitals, and laboratories in Jinja, Entebbe, Mbarara, Gulu, and across all major urban centres.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"><i class="fa-solid fa-flask"></i></div>
+              <div class="tl-body">
+                <div class="tl-year">2022 — Innovation</div>
+                <h3 class="tl-title">Autoclave &amp; Incineration Upgrade</h3>
+                <p class="tl-text">Invested in state-of-the-art autoclave sterilisation and high-temperature incineration technology, drastically reducing environmental impact of hazardous waste treatment.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"><i class="fa-solid fa-star"></i></div>
+              <div class="tl-body">
+                <div class="tl-year">2018 — Today</div>
+                <h3 class="tl-title">500+ Healthcare Partners</h3>
+                <p class="tl-text">Proudly serving over 500 hospitals, clinics, laboratories, pharmaceutical companies, and research institutions across Uganda with a zero-incident safety record.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Values & Mission -->
+        <div class="about-content reveal-right">
+          <span class="section-label">Our Mission</span>
+          <h2 class="section-title">A Safer Uganda, One Disposal at a Time</h2>
+          <div class="divider"></div>
+          <p class="section-sub">
+            We believe safe communities start with responsible waste management. Every sharps bin collected, every litre of chemical waste treated, and every piece of pharmaceutical refuse incinerated is a step toward a healthier Uganda. Our expert team is trained to the highest international standards — because when it comes to hazardous materials, there is no room for error.
+          </p>
+
+          <div class="values-grid">
+            <div class="value-card reveal delay-1">
+              <div class="value-icon"><i class="fa-solid fa-shield"></i></div>
+              <h4>Safety First</h4>
+              <p>Every process is governed by strict biosafety protocols and regulatory compliance.</p>
+            </div>
+            <div class="value-card reveal delay-2">
+              <div class="value-icon"><i class="fa-solid fa-leaf"></i></div>
+              <h4>Sustainability</h4>
+              <p>We treat the environment as a stakeholder — zero landfill commitment for clinical waste.</p>
+            </div>
+            <div class="value-card reveal delay-3">
+              <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+              <h4>Partnership</h4>
+              <p>We work alongside your team to develop tailored waste management programmes.</p>
+            </div>
+            <div class="value-card reveal delay-4">
+              <div class="value-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <h4>Transparency</h4>
+              <p>Full chain-of-custody documentation provided for every waste collection cycle.</p>
+            </div>
+          </div>
+
+          <div class="cert-strip reveal delay-5">
+            <i class="fa-solid fa-award"></i>
+            <p><strong>NEMA Licensed &amp; Fully Insured.</strong><br/>Right Projects Ltd holds all required environmental and operational permits required by Ugandan law and international waste management standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 3: SERVICES
+       ============================================================ -->
+  <section id="services" aria-label="Our services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-label reveal">What We Do</span>
+        <h2 class="section-title reveal delay-1">Comprehensive Waste Management Solutions</h2>
+        <p class="section-sub reveal delay-2">
+          From routine clinical waste collection to emergency hazardous spill response — we provide the full spectrum of medical and industrial waste management services, tailored to your facility's needs.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="services-grid">
+
+        <!-- Featured card (wider) -->
+        <div class="service-card feature reveal delay-1">
+          <div class="svc-content">
+            <div class="svc-icon"><i class="fa-solid fa-biohazard"></i></div>
+            <h3>Clinical &amp; Infectious Waste Collection</h3>
+            <p>Our core service — scheduled collection of sharps, blood-contaminated materials, pathological waste, and microbiological specimens from hospitals, clinics, and laboratories. We supply colour-coded UN-certified containers and provide regular, reliable collection cycles customised to your facility's volume and risk profile.</p>
+            <a href="#contact" class="svc-link">Request a quote <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="svc-img">
+             <img src="truck2.jpeg" alt="Clinical waste collection service" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Standard cards -->
+        <div class="service-card reveal delay-2">
+          <div class="svc-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <h3>High-Temperature Incineration</h3>
+          <p>Pathological, pharmaceutical, and highly infectious waste is destroyed at our licensed incineration facility operating above 850°C — eliminating pathogens and reducing waste volume by over 95%.</p>
+          <a href="#contact" class="svc-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal delay-3">
+          <div class="svc-icon"><i class="fa-solid fa-temperature-high"></i></div>
+          <h3>Autoclave Sterilisation</h3>
+          <p>Steam sterilisation under high pressure renders reusable instruments and certain waste streams safe. Our autoclaves are calibrated, logged, and validated to international sterilisation standards.</p>
+          <a href="#contact" class="svc-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal delay-1">
+          <div class="svc-icon"><i class="fa-solid fa-flask-vial"></i></div>
+          <h3>Chemical &amp; Hazardous Waste</h3>
+          <p>Laboratory chemicals, reagents, solvents, and industrial effluents require specialist handling. We provide compliant transport, neutralisation, and disposal for all categories of chemical waste.</p>
+          <a href="#contact" class="svc-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal delay-2">
+          <div class="svc-icon"><i class="fa-solid fa-pills"></i></div>
+          <h3>Pharmaceutical Waste Disposal</h3>
+          <p>Expired medications, cytotoxic drugs, and controlled substances cannot simply be discarded. We manage pharmaceutical waste in full compliance with Ministry of Health and NEMA guidelines.</p>
+          <a href="#contact" class="svc-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal delay-3">
+          <div class="svc-icon"><i class="fa-solid fa-truck-medical"></i></div>
+          <h3>Emergency Spill Response</h3>
+          <p>Hazardous spills demand immediate, expert response. Our rapid-response teams are equipped with full PPE and specialist absorbents to contain, decontaminate, and safely dispose of hazardous material spills.</p>
+          <a href="#contact" class="svc-link">Call emergency line <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal delay-1">
+          <div class="svc-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+          <h3>Waste Audits &amp; Compliance</h3>
+          <p>We conduct detailed facility waste audits, identify compliance gaps, and provide training for your waste management teams — helping you meet NEMA, WHO, and donor-reporting requirements.</p>
+          <a href="#contact" class="svc-link">Schedule an audit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+
+      <!-- Process Strip -->
+      <div class="process-strip reveal">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h4>Collection</h4>
+          <p>Scheduled or on-demand pickup using certified vehicles and licensed staff.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h4>Transport</h4>
+          <p>Secure chain-of-custody transport with GPS tracking and manifest documentation.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h4>Treatment</h4>
+          <p>Sterilisation, chemical neutralisation, or incineration depending on waste category.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h4>Documentation</h4>
+          <p>Full waste disposal certificate issued for regulatory and audit records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ SECTION
+       ============================================================ -->
+  <section id="faq" aria-label="Frequently asked questions">
+    <div class="container">
+      <div class="faq-grid">
+
+        <!-- Left intro -->
+        <div class="reveal-left">
+          <span class="section-label">Common Questions</span>
+          <h2 class="section-title">Everything You Need to Know</h2>
+          <div class="divider"></div>
+          <p class="section-sub">
+            Medical waste regulations can be complex. We've answered the most frequently asked questions to help your facility stay informed, compliant, and safe.
+          </p>
+          <div class="ornament"><i class="fa-solid fa-circle-dot"></i></div>
+          <p style="font-size:.88rem; color:var(--text-muted);">Can't find your answer? Reach out to our team directly and we'll respond within one business day.</p>
+          <a href="#contact" class="btn btn-outline" style="margin-top:1.5rem;">
+            <i class="fa-solid fa-envelope"></i>
+            Contact Us
+          </a>
+        </div>
+
+        <!-- Right FAQ accordion -->
+        <div class="faq-list reveal-right" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              What types of medical waste does Right Projects Ltd handle?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              We handle all regulated categories of medical waste including sharps (needles, lancets, scalpels), infectious waste, pathological waste (tissues, organs), pharmaceutical waste, chemical and laboratory waste, radioactive materials, and cytotoxic waste. Our team advises on correct segregation at source.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              How often will you collect waste from our facility?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              Collection frequency is customised to your facility's waste volume and risk profile. We offer daily, weekly, bi-weekly, or monthly scheduled collections. Emergency and on-demand collections are also available 24/7. When we sign a service agreement, we assess your average waste generation and recommend an optimal schedule.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Are you licensed and regulated by NEMA?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              Yes. Right Projects Ltd holds a valid Waste Management License issued by Uganda's National Environment Management Authority (NEMA). We comply fully with the National Environment Act, the National Environment (Waste Management) Regulations, and Ministry of Health guidelines for healthcare waste. Our license documentation is available on request.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Do you supply waste bins and containers?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              Yes. We supply all necessary colour-coded, UN-certified sharps containers, clinical waste bags, leak-proof bins, and rigid-walled hazardous waste drums as part of our service packages. Our supply schedule is synchronised with your collection cycle so you are never without compliant storage.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              What documentation do we receive after disposal?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              After every collection and disposal cycle, you receive a fully documented Waste Transfer Note and a Disposal Certificate. These records include waste category, weight, treatment method, and confirmation of compliant disposal — providing everything your facility needs for audits, donor reporting, and regulatory inspections.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Do you offer staff training on waste segregation?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              Absolutely. Correct segregation at the point of generation is the foundation of safe waste management. We offer on-site training sessions for clinical and support staff, covering waste categories, colour-coding systems, safe handling, and spill response procedures. Training can be scheduled as part of a service package or as a standalone engagement.
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Can small clinics and private practices use your service?
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a">
+              Yes. We serve healthcare facilities of all sizes — from large referral hospitals and pharmaceutical manufacturers to small private clinics, dental practices, veterinary clinics, and diagnostic laboratories. We offer scalable service packages designed to be cost-effective for lower-volume generators.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 4: CONTACT
+       ============================================================ -->
+  <section id="contact" aria-label="Contact us">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Contact info -->
+        <div class="reveal-left">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Let's Talk Waste Management</h2>
+          <div class="divider"></div>
+          <p class="section-sub">
+            Whether you need an immediate waste collection, a long-term service contract, a compliance audit, or simply have a question — our team is ready to help.
+          </p>
+
+          <div class="contact-info" style="margin-top:2.5rem;">
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <h4>Main Office</h4>
+                <a href="tel:+256785211586">+256 785 211 586</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-phone-volume"></i></div>
+              <div>
+                <h4>24/7 Emergency Line</h4>
+                <a href="tel:+256785211586">+256 785 211 586</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <h4>Email Us</h4>
+                <a href="mailto:busuulwaibrahim1234@gmail.com">busuulwaibrahim1234@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <h4>Office Hours</h4>
+                <p>Mon – Fri: 8:00am – 5:30pm<br/>Sat: 9:00am – 1:00pm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact form 
+        <div class="contact-form-wrap reveal-right">
+          <h3 class="form-title">Send Us a Message</h3>
+          <p class="form-sub">Fill in the form below and our team will get back to you within one business day.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Nakato" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="jane@hospital.ug" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+256 7XX XXX XXX" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="facility">Facility / Organisation</label>
+              <input type="text" id="facility" name="facility" placeholder="Kampala International Hospital" />
+            </div>
+            <div class="form-group">
+              <label for="service">Service Required</label>
+              <select id="service" name="service">
+                <option value="">Select a service…</option>
+                <option>Clinical Waste Collection</option>
+                <option>Incineration Service</option>
+                <option>Chemical Waste Disposal</option>
+                <option>Pharmaceutical Waste</option>
+                <option>Emergency Spill Response</option>
+                <option>Waste Compliance Audit</option>
+                <option>Staff Training</option>
+                <option>Other / General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Please describe your waste management needs, facility size, or any specific requirements…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+              <i class="fa-solid fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>-->
+
+          <!-- Success state -->
+          <div class="form-success" id="formSuccess">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3 style="margin-bottom:.5rem;">Message Sent!</h3>
+            <p>Thank you for reaching out. Our team will review your enquiry and respond within one business day.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE 5: LOCATION & MAP
+       ============================================================ -->
+  <section id="location" aria-label="Our location">
+    <div class="container">
+
+      <div style="text-align:center; margin-bottom:4rem;">
+        <span class="section-label reveal">Find Us</span>
+        <h2 class="section-title reveal delay-1">Our Location &amp; Service Area</h2>
+        <p class="section-sub reveal delay-2" style="margin: 0 auto;">
+          Based in Kampala, we serve healthcare facilities across Uganda. Our fleet of licensed waste transport vehicles operates on scheduled routes throughout the country.
+        </p>
+      </div>
+
+      <div class="location-grid">
+
+        <!-- Location details left -->
+        <div class="reveal-left">
+          <div class="location-details">
+            <div class="loc-card">
+              <div class="loc-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <h4>Head Office</h4>
+                <p>Nankulabye Kiyindi<br/>Kampala, Uganda<br/>P.O. Box 12345 Kampala</p>
+              </div>
+            </div>
+            <div class="loc-card">
+              <div class="loc-icon"><i class="fa-solid fa-industry"></i></div>
+              <div>
+                <h4>Treatment Facility</h4>
+                <p>Namanve Industrial Park<br/>Mukono District, Uganda<br/>(Licensed Incineration &amp; Autoclave Site)</p>
+              </div>
+            </div>
+            <div class="loc-card">
+              <div class="loc-icon"><i class="fa-solid fa-truck"></i></div>
+              <div>
+                <h4>Dispatch Depot</h4>
+                <p>Portbell Road, Luzira<br/>Kampala, Uganda<br/>Fleet operations &amp; container storage</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coverage area tags -->
+          <div class="coverage-strip reveal delay-3">
+            <h4><i class="fa-solid fa-map" style="color:var(--accent);margin-right:.5rem;"></i> National Coverage</h4>
+            <div class="coverage-tags">
+              <span class="cov-tag">Kampala</span>
+              <span class="cov-tag">Entebbe</span>
+              <span class="cov-tag">Jinja</span>
+              <span class="cov-tag">Mbarara</span>
+              <span class="cov-tag">Gulu</span>
+              <span class="cov-tag">Lira</span>
+              <span class="cov-tag">Fort Portal</span>
+              <span class="cov-tag">Mbale</span>
+              <span class="cov-tag">Soroti</span>
+              <span class="cov-tag">Arua</span>
+              <span class="cov-tag">Kabale</span>
+              <span class="cov-tag">Masaka</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map right -->
+        <div class="map-wrap reveal-right">
+          <!-- Google Maps embed — centred on Kampala, Uganda -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.56948296375!2d32.49498!3d0.31628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc0f90b373d3%3A0xffe4a9c2e1e71f8!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            title="Right Projects Ltd — Kampala, Uganda location map"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-mark">R</div>
+            <div class="logo-text">
+              <span class="logo-name">Right Projects Ltd</span>
+              <span class="logo-tag">Your Medical Waste Co.</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Uganda's trusted partner for safe, compliant, and sustainable management of medical and hazardous waste. Protecting communities and the environment since 2012.
+          </p>
+          <!-- Social links -->
+          <div class="footer-social">
+            <!-- <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a> -->
+            <!-- <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a> -->
+            <a href="#" class="social-btn" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Navigation column -->
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#location">Location</a></li>
+          </ul>
+        </div>
+
+        <!-- Services column -->
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Clinical Waste Collection</a></li>
+            <li><a href="#services">High-Temp Incineration</a></li>
+            <li><a href="#services">Autoclave Sterilisation</a></li>
+            <li><a href="#services">Chemical Waste Disposal</a></li>
+            <li><a href="#services">Pharmaceutical Waste</a></li>
+            <li><a href="#services">Emergency Response</a></li>
+            <li><a href="#services">Compliance Audits</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact column -->
+        <div class="footer-col">
+          <h5>Contact Us</h5>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Nankulabye Kiyindi<br/>Kampala, Uganda</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+256785211586">+256 785 211 586</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>24/7 Emergency:<br/><a href="tel:+256785211586">+256 785 211 586</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:busuulwaibrahim1234@gmail.com">busuulwaibrahim1234@gmail.com</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer bottom bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Right Projects Ltd. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Waste Management Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       BACK TO TOP BUTTON
+       ============================================================ -->
+  <button id="back-top" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- ============================================================
+       JAVASCRIPT — Navigation, Theme, Scroll, FAQ, Form
+       ============================================================ -->
+  <script>
+    /* ============================================================
+       UTILITY: Set current year in footer
+       ============================================================ */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ============================================================
+       NAVBAR: scroll behaviour + active link highlight
+       ============================================================ */
+    const navbar  = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    const navCta  = document.getElementById('navCta');
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+
+      /* Scrolled state */
+      if (scrollY > 60) {
+        navbar.classList.add('scrolled');
+        navCta.style.display = 'inline-flex';
+        document.getElementById('back-top').classList.add('show');
+      } else {
+        navbar.classList.remove('scrolled');
+        navCta.style.display = 'none';
+        document.getElementById('back-top').classList.remove('show');
+      }
+
+      /* Active nav link — highlight based on section in viewport */
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (scrollY >= top) current = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+
+      /* Scroll-reveal elements */
+      revealOnScroll();
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATION
+       ============================================================ */
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      const winH = window.innerHeight;
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < winH * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    /* Initial check on load */
+    window.addEventListener('load', revealOnScroll);
+
+    /* ============================================================
+       THEME TOGGLE — dark / light mode
+       ============================================================ */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon   = document.getElementById('themeIcon');
+
+    // Check saved preference
+    const savedTheme = localStorage.getItem('rpl-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next    = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('rpl-theme', next);
+      updateThemeIcon(next);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark'
+        ? 'fa-solid fa-moon'
+        : 'fa-solid fa-sun';
+    }
+
+    /* ============================================================
+       HAMBURGER / MOBILE MENU
+       ============================================================ */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose= document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    mobileClose.addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    }
+
+    /* Close on ESC key */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+
+    /* ============================================================
+       SMOOTH SCROLL for internal anchor links
+       ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ============================================================
+       FAQ ACCORDION
+       ============================================================ */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        /* Close all */
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-q').setAttribute('aria-expanded', false);
+        });
+
+        /* Open clicked (toggle) */
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', true);
+        }
+      });
+    });
+
+    /* ============================================================
+       CONTACT FORM — submission simulation
+       ============================================================ */
+    const contactForm  = document.getElementById('contactForm');
+    const formSuccess  = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      /* Basic validation */
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!fname || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+
+      /* Simulate sending */
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        contactForm.style.display = 'none';
+        formSuccess.style.display = 'block';
+      }, 1800);
+    });
+
+    /* ============================================================
+       BACK TO TOP BUTTON
+       ============================================================ */
+    document.getElementById('back-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ============================================================
+       STATS COUNTER ANIMATION — runs once when hero enters view
+       ============================================================ */
+    let countersDone = false;
+
+    function animateCounters() {
+      if (countersDone) return;
+      countersDone = true;
+
+      const counters = [
+        { el: document.querySelectorAll('.stat-num')[0], end: 12, suffix: '+' },
+        { el: document.querySelectorAll('.stat-num')[1], end: 500, suffix: '+' },
+        { el: document.querySelectorAll('.stat-num')[2], end: 99.8, suffix: '%', decimal: true },
+      ];
+
+      counters.forEach(({ el, end, suffix, decimal }) => {
+        if (!el) return;
+        let start = 0;
+        const duration = 1600;
+        const step = end / (duration / 16);
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= end) {
+            start = end;
+            clearInterval(timer);
+          }
+          el.textContent = (decimal ? start.toFixed(1) : Math.floor(start)) + suffix;
+        }, 16);
+      });
+    }
+
+    /* Trigger counter when hero stats are visible */
+    const statsObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) animateCounters();
+      });
+    }, { threshold: .5 });
+
+    const statsEl = document.querySelector('.hero-stats');
+    if (statsEl) statsObs.observe(statsEl);
+
+    /* ============================================================
+       Initial scroll check (handle page load mid-scroll)
+       ============================================================ */
+    onScroll();
+  </script>
+
+</body>
+</html>
