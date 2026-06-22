@@ -30,17 +30,17 @@
        ============================================================ */
     :root {
       /* Core palette — dark mode */
-      --bg:          #1c1c1e;
-      --bg-card:     #2c2c2e;
-      --bg-card2:    #242426;
-      --accent:      #b87333;        /* muted copper */
-      --accent-light:#d4924a;        /* lighter copper */
-      --accent-glow: rgba(184,115,51,.18);
-      --text:        #f5f0e8;        /* warm cream */
-      --text-muted:  #a89880;
-      --text-faint:  #6b6055;
-      --border:      rgba(184,115,51,.22);
-      --border-soft: rgba(245,240,232,.08);
+      --bg:          #08142b;
+      --bg-card:     #0f244a;
+      --bg-card2:    #122d5f;
+      --accent:      #ff7d00;        /* orange accent */
+      --accent-light:#ffab40;        /* lighter orange */
+      --accent-glow: rgba(255,125,0,.18);
+      --text:        #eef4ff;        /* light text */
+      --text-muted:  #a3c2ff;
+      --text-faint:  #7a95bb;
+      --border:      rgba(255,125,0,.22);
+      --border-soft: rgba(238,244,255,.08);
       --shadow:      0 8px 40px rgba(0,0,0,.55);
       --shadow-sm:   0 2px 12px rgba(0,0,0,.35);
       --nav-h:       72px;
@@ -54,7 +54,7 @@
 
     /* Light mode overrides */
     [data-theme="light"] {
-       --bg:          #f3f7ff;
+      --bg:          #f3f7ff;
       --bg-card:     #ffffff;
       --bg-card2:    #e8efff;
       --accent:      #ff7d00;
@@ -1245,7 +1245,7 @@
       .about-grid      { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid   { grid-template-columns: 1fr; }
       .service-card.feature { grid-column: span 1; grid-template-columns: 1fr; }
-      .service-card.feature .svc-img { display: none; }
+      .service-card.feature .svc-img { aspect-ratio: auto; min-height: 250px; margin-bottom: 1.5rem; }
       .faq-grid        { grid-template-columns: 1fr; gap: 2.5rem; }
       .contact-grid    { grid-template-columns: 1fr; gap: 2.5rem; }
       .location-grid   { grid-template-columns: 1fr; gap: 2.5rem; }
