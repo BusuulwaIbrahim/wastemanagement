@@ -784,6 +784,58 @@
       line-height: 1.8;
       position: relative; z-index: 1;
     }
+
+    /* Image showcase */
+    .work-showcase { margin-top: 5rem; }
+    .work-showcase-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1.8rem;
+    }
+    .work-showcase-header .section-title { margin-bottom: 0; }
+    .work-showcase-header .section-sub {
+      max-width: 430px;
+      text-align: right;
+    }
+    .work-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: 1rem;
+    }
+    .work-gallery figure {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+    }
+    .work-gallery figure:first-child { grid-row: span 2; }
+    .work-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition), filter var(--transition);
+    }
+    .work-gallery figure:hover img {
+      transform: scale(1.05);
+      filter: brightness(.78);
+    }
+    .work-gallery figcaption {
+      position: absolute;
+      right: .8rem;
+      bottom: .8rem;
+      left: .8rem;
+      padding: .55rem .7rem;
+      border-left: 2px solid var(--accent);
+      background: rgba(8, 20, 43, .82);
+      color: #fff;
+      font-size: .75rem;
+      letter-spacing: .04em;
+    }
     .svc-link {
       display: inline-flex;
       align-items: center;
@@ -1228,6 +1280,7 @@
        ============================================================ */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .work-gallery { grid-template-columns: repeat(3, 1fr); }
       .service-card.feature { grid-column: span 2; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .process-strip { grid-template-columns: repeat(2, 1fr); }
@@ -1244,6 +1297,9 @@
 
       .about-grid      { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid   { grid-template-columns: 1fr; }
+      .work-showcase-header { display: block; }
+      .work-showcase-header .section-sub { margin-top: 1rem; text-align: left; }
+      .work-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 190px; }
       .service-card.feature { grid-column: span 1; grid-template-columns: 1fr; }
       .service-card.feature .svc-img { aspect-ratio: auto; min-height: 250px; margin-bottom: 1.5rem; }
       .faq-grid        { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1585,6 +1641,43 @@
           <a href="#contact" class="svc-link">Schedule an audit <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
+      </div>
+
+      <!-- Image showcase -->
+      <div class="work-showcase">
+        <div class="work-showcase-header reveal">
+          <div>
+            <span class="section-label">Our Work</span>
+            <h2 class="section-title">Responsible Work, Visible Results</h2>
+          </div>
+          <p class="section-sub">A closer look at the people, equipment, and field work behind every safe collection.</p>
+        </div>
+        <div class="work-gallery">
+          <figure class="reveal delay-1">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.06.jpeg" alt="Right Projects waste management operations" loading="lazy" />
+            <figcaption>Safe, organised operations</figcaption>
+          </figure>
+          <figure class="reveal delay-2">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.06 (1).jpeg" alt="Waste management team at work" loading="lazy" />
+            <figcaption>Trained field teams</figcaption>
+          </figure>
+          <figure class="reveal delay-3">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.07.jpeg" alt="Medical waste management equipment" loading="lazy" />
+            <figcaption>Professional equipment</figcaption>
+          </figure>
+          <figure class="reveal delay-4">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.07 (1).jpeg" alt="Waste collection activity" loading="lazy" />
+            <figcaption>Reliable collection</figcaption>
+          </figure>
+          <figure class="reveal delay-1">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.07 (2).jpeg" alt="Waste handling process" loading="lazy" />
+            <figcaption>Careful handling</figcaption>
+          </figure>
+          <figure class="reveal delay-2">
+            <img src="WhatsApp Image 2026-08-21 at 09.30.07 (3).jpeg" alt="Right Projects service activity" loading="lazy" />
+            <figcaption>Service in action</figcaption>
+          </figure>
+        </div>
       </div>
 
       <!-- Process Strip -->
